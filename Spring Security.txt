@@ -1,0 +1,44 @@
+* Spring Security đơn giản là 1 framework dành cho việc bảo mật ứng dụng
+* Spring Security cung cấp các tính năng xác thực (authentication) và phân quyền (authorization) cho các ứng dụng, cũng như hỗ trợ các tiêu chuẩn và giao thức bảo mật như HTTPS, OAuth2, JWT, LDAP, SAML, OpenID Connect.
+* Cơ chế hoạt động của Spring Security: Nó sẽ can thiệp vào quá trình xử lý yêu cầu(request) , phản hồi(reponse ) của web và từ đó nó sẽ thực hiện 1 số công việc như kiểm tra xác thực, phân quyền và điều hướng trang đến đăng nhập, đăng xuất.
+* Các thành phần cơ bản của Security 
+	+ Authentication : Xác thực xem người dùng có quyền truy cập vào ứng dụng hay không. Khi login thành công rồi thì họ sẽ được xác thực để đảm bảo rằng họ là người dùng hợp lệ và có quyền truy cập vào các tài nguyên yêu cầu. ( Dễ dàng hiểu hơn nó như người bảo vệ,họ sẽ xác định thành viên công ty và kiểm soát việc họ có được vào cty hay các phòng ban của công ty hay không )
+		- Spring hỗ trợ xác thực như thế nào?
+			Spring Security hỗ trợ xác thực thông qua một số cơ chế, bao gồm:
+			Form-based authentication: Xác thực thông qua một form đăng nhập.
+			HTTP Basic authentication: Xác thực thông qua các header authorization.
+			Authentication via a custom login page: Xác thực thông qua một trang đăng nhập tùy chỉnh.
+			Pre-authenticated authentication: Xác thực thông qua các giá trị được cung cấp từ phía máy khách.
+	+ Authorization ( giống như phân quyền ) : 
+		- Nó xác định quyền truy cập đối với tài nguyên ứng dụng, khi người dùng truy cập vào tài nguyên hay chức năng thì Spring Security sẽ kiểm tra xem người dùng có quyền truy cập vào tài nguyên đó hay chức năng đó hay không ( Dễ hiểu hơn là phân quyền user và admin thì user sẽ không có quyền xem tài nguyên mà admin quản lí như thêm sửa xóa,....)
+	
+	
+Authentication Provider : 	
+		- Xác thực thông tin người dùng, nó sẽ kiểm tra thông tin đăng nhập của người dùng và trả về kết quả xác thực
+		- Authentication Provider được sử dụng bởi Authentication Manager để xử lý yêu cầu xác thực từ người dùng hoặc ứng dụng. 
+* Các tính năng nâng cao của Spring Security
+	+ CSRF protection (bảo vệ chống lại tấn công CSRF)
+	+ Session management (quản lý phiên)
+	+ Password encoding (mã hóa mật khẩu)
+- @EnableWebSecurity sử dụng để kích hoạt và cấu hình tính năng bảo mật web 
+- HttpSecurity là đối tượng chính Security cho phép cấu hình mọi thứ 
+	.permitAll() - Tất cả các role đều có thể truy cập
+	.hasRole("role") - Role nào được khai báo mới truy cập được
+	.authenticated() - Tất cả các link còn lại đều phải chứng thực
+//@ElementCollection : Dùng cho mối quan hệ 1 nhiều ( giống với OneToMany )
+// Cài đặt và sử dụng Spring Security 
++ Ta có thể config tài khoản username,password ở file application.properties 
+spring.security.user.name= user
+spring.security.user.password=123456
+
+Cách lấy secrey_key :
+ SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    String secretString = Encoders.BASE64.encode(key.getEncoded());
+
+        System.out.println("Kiem tra: "  +secretString);
+
+
+
+** RestTemplate: là một thư viện trong Spring Framework được sử dụng để tạo các yêu cầu HTTP và xử lý phản hồi của chúng. RestTemplate cung cấp một cách đơn giản để giao tiếp với các API RESTful bằng cách sử dụng các phương thức HTTP như GET, POST, PUT, DELETE, v.v.
+
+
